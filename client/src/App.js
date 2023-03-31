@@ -25,7 +25,6 @@ function App() {
           return i.productId
         })
         setIdList(idArray);
-        console.log(idArray);
       })
       .catch(err => console.log(err));
   }
