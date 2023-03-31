@@ -1,24 +1,105 @@
 import { useState, useEffect } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './global.css';
+import axios from 'axios';
+
+import DataTable from './components/DataTable';
+
+import logo from './logo.png';
+import AddNewIcon from './svgs/AddNew';
 
 function App() {
-  const [state, setState] = useState();
+  const [dataState, setDataState] = useState([]);
+
+  const getProducts = () => {
+    axios.get('/api/products')
+      .then(res => {
+        console.log(res.data)
+        setDataState(res.data)
+      })
+      .catch(err => console.log(err));
+  }
 
   useEffect(() => {
-    fetch('/api')
-    .then(res => res.json())
-    .then(data => setState(data.message))
+    getProducts();
   }, [])
 
+  const tableData = dataState.map((i, index) => {
+    return (
+      <DataTable
+        key={index}
+        productId={i.productId}
+        productName={i.productName}
+        productOwnerName={i.productOwnerName}
+        developers={i.developers}
+        scrumMasterName={i.scrumMasterName}
+        startDate={i.startDate}
+        methodology={i.methodology}
+        getFunction={getProducts}
+      />
+    )
+  })
+
+  const createNewEntry = async () => {
+
+    const generateProductId = () => {
+      // ** CHECK IF THIS NUMBER MATCHES ANY OF THE OTHER PRODUCTIDs
+      return Math.floor(Math.random() * (9999 - 1000) + 1000);
+    }
+
+    await axios.post('/api/products', {
+      productId: generateProductId(),
+      productName: 'Stone Max',
+      productOwnerName: 'Kimberly Altos',
+      developers: [
+        "Kylie Toks",
+        "Jessie Adams",
+        "Jack Sirers",
+        "Charlie Flams",
+        "Sandy Soo"
+      ],
+      scrumMasterName: "Violet Karassik",
+      startDate: "2023/04/07",
+      methodology: "Waterfall"
+    })
+      .then(res => {
+        console.log("POST WORKED!", res);
+        getProducts();
+      })
+      .catch(err => console.log("POST FAILED", err))
+  }
+
+  const tableHeadings = ["PRODUCT ID", "PRODUCT NAME", "PRODUCT OWNER", "DEVELOPERS", "SCRUM MASTER", "START DATE", "METHODOLOGY"];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {!state ? "Loading..." : state}
-        </p>
-      </header>
+    <div className="max-w-screen-2xl mx-auto mb-[80px]">
+      <div className="w-full flex justify-between items-center mb-[80px]">
+        <img src={logo} alt="" className="w-1/5 max-w-1/5" />
+        <div>
+          <button
+            onClick={() => createNewEntry()}
+            className="flex items-center gap-2 bg-[#234075] text-white text-md font-sans font-semibold tracking-wide rounded-[20px] px-6 py-3 mr-[20px]"
+          >
+            ADD NEW ENTRY
+          </button>
+        </div>
+      </div>
+
+      <h1 className="font-serif font-semibold text-5xl ml-[80px] mb-[44px]">Web Applications</h1>
+
+      <p className="text-md font-sans font-semibold tracking-wide ml-[80px] mb-[18px]">TOTAL: x</p>
+
+      <div className="bg-[#EFEFEF] w-[95%] ml-[2.5%] rounded-[40px] p-[44px]">
+        <table className="w-full">
+          <tr className="text-left">
+            {tableHeadings.map((i) => {
+              return (
+                <th className="text-[#8494b4] text-sm font-sans font-extrabold tracking-wide pb-[60px]">{i}</th>
+              )
+            })}
+          </tr>
+          {tableData}
+        </table>
+      </div>
     </div>
   );
 }
