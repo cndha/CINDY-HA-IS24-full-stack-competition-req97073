@@ -23,3 +23,9 @@ Express back-end:
 * React-Modal
 * TailwindCSS
 * Express
+
+## Final Product
+
+![Home screen](https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073/blob/main/client/docs/screenshot1.png?raw=true)
+![Add new entry](https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073/blob/main/client/docs/screenshot2.png?raw=true)
+![Edit existing entry](https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073/blob/main/client/docs/screenshot3.png?raw=true)
