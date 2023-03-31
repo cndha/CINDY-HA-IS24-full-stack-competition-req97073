@@ -4,6 +4,7 @@ This simple data rendering application is the first part of the coding challenge
 
 The application uses ExpressJS and ReactJS frameworks and local JSON file for data storage.
 
+
 ## Set Up
 
 React front-end:
@@ -13,7 +14,7 @@ React front-end:
 
 Express back-end:
 * Install dependecies in "server" folder with ***npm install***
-* Run ***npm start*** to render JSON:API on http://localhost:3000/api
+* Run ***npm start*** to render health status on http://localhost:3000 and JSON:API on http://localhost:3000/api
 
 
 ## Dependencies
@@ -23,6 +24,7 @@ Express back-end:
 * React-Modal
 * TailwindCSS
 * Express
+
 
 ## Final Product
 
