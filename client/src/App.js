@@ -11,12 +11,13 @@ function App() {
   const [dataState, setDataState] = useState([]);
   const [total, setTotal] = useState(0);
   const [modalOpen, setModalOpen] = useState(false);
-  const [idList, setIdList] = useState([]); //array of product Ids for generating new id
+  const [idList, setIdList] = useState([]); //array of product Ids to check for generating new id
 
+  //display data
   const getProducts = () => {
     axios.get('/api/products')
       .then(res => {
-        // console.log(res.data);
+        console.log(res);
         setDataState(res.data);
         setTotal(res.data.length);
 

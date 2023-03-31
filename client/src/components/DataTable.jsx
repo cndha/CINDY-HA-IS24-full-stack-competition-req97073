@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 
 function DataTable(props) {
   const [edit, setEdit] = useState(false);
-  const [disableBtn, setDisableBtn] = useState(true);
+  const [disableBtn, setDisableBtn] = useState(true); //save changes btn
   const [selectProductId, setSelectProductId] = useState();
   const [editField, setEditField] = useState({
     productName: props.productName,
@@ -26,6 +26,7 @@ function DataTable(props) {
     const key = e.target.name;
     const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
+    //new state obj
     return setEditField({
       ...editField,
       [key]: val,
@@ -39,20 +40,18 @@ function DataTable(props) {
       productId: selectProductId,
       productName: editField.productName,
       productOwnerName: editField.productOwnerName,
-      // developers: editField.developers.split(","),
       developers: [editField.developerOne, editField.developerTwo, editField.developerThree, editField.developerFour, editField.developerFive],
       scrumMasterName: editField.scrumMasterName,
       startDate: editField.startDate,
       methodology: editField.methodology
     };
-    console.log("data to send", sendData);
 
     await axios.patch(`/api/products/${selectProductId}`, sendData)
       .then(res => {
-        setEdit(false);
-        props.getFunction();
-        setDisableBtn(true);
-        console.log("PATCH WORKED", res);
+        console.log(res);
+        setEdit(false); //close edit modal
+        props.getFunction(); //display new data
+        setDisableBtn(true); //change btn color
       })
       .catch(err => console.log(err))
   }
@@ -152,10 +151,12 @@ function DataTable(props) {
                       </label>
                     </div>
                     <input
-                      type="text"
+                      type="date"
+                      min="2000-01-01"
+                      max="2030-12-31"
                       name="startDate"
                       className="w-[300px] rounded-lg border border-gray-200 bg-gray-100 px-4 py-2 text-sm placeholder:text-gray-400 focus:border-gray-400 focus:ring-0 hover:border-gray-400"
-                      placeholder="Enter start date..."
+                      placeholder="YYYY/MM/DD"
                       value={editField.startDate}
                       onChange={handleChange}
                       required

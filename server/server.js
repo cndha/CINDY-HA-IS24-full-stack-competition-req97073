@@ -17,19 +17,7 @@ app.get('/api/products', (req, res) => {
   res.json(data.products)
 });
 
-// app.get('/api/products/:id', (req, res) => { 
-//   // add condition here for if the product id doesnt exist, also this should go by productId
-//   // res.json(data.products[(req.params.id-1)]);
-//   // res.json(req.params.id);
 
-//   // if (data.products[req.params.id] === undefined) {
-//   //   return res.status(404).send("This product id does not exist.");
-//   // }
-
-//   const db = data.products;
-//   const product = db.find((p) => +p._productId === +req.params.id);
-//   res.json(product);
-// });
 app.get('/api/products/:id', (req, res) => {
   const db = data.products;
   const product = db.find((x) => x.productId === parseInt(req.params.id));

@@ -30,6 +30,7 @@ const CreateModal = (props) => {
     const key = e.target.name;
     const val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
+    //set new state obj
     return setForm({
       ...form,
       [key]: val,
@@ -48,15 +49,14 @@ const CreateModal = (props) => {
       startDate: form.startDate,
       methodology: form.methodology
     };
-    console.log("data to POST", postData);
 
     await axios.post('/api/products', postData)
       .then(res => {
-        console.log("POST WORKED!", res);
-        getProducts();
-        onClose(false);
+        console.log(res);
+        getProducts(); //update data
+        onClose(false); //close modal
       })
-      .catch(err => console.log("POST FAILED", err))
+      .catch(err => console.log(err))
 
   }
 
@@ -123,10 +123,12 @@ const CreateModal = (props) => {
                 </label>
               </div>
               <input
-                type="text"
+                type="date"
+                min="2000-01-01"
+                max="2030-12-31"
                 name="startDate"
                 className="w-[300px] rounded-lg border border-gray-200 bg-gray-100 px-4 py-2 text-sm placeholder:text-gray-400 focus:border-gray-400 focus:ring-0 hover:border-gray-400"
-                placeholder="Enter start date..."
+                placeholder="YYYY/MM/DD"
                 value={form.startDate}
                 onChange={handleChange}
                 required
