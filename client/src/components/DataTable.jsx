@@ -59,7 +59,8 @@ function DataTable(props) {
           <td className="">{d}</td>
         )
       })} */}
-      <td className="pb-[60px] leading-normal">
+      {props.developers.length > 1 ? (
+        <td className="pb-[60px] leading-normal">
         {props.developers[0]}
         <br />
         {props.developers[1]}
@@ -70,6 +71,9 @@ function DataTable(props) {
         <br />
         {props.developers[4]}
       </td>
+      ) : (
+        <td>{props.developers}</td>
+      )}
       <td>{props.scrumMasterName}</td>
       <td>{props.startDate}</td>
       <td>{props.methodology}</td>

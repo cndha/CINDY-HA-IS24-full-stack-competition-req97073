@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073/issues"
   },
-  "homepage": "https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073#readme"
+  "homepage": "https://github.com/cndha/CINDY-HA-IS24-full-stack-competition-req97073#readme",
+  "dependencies": {
+    "react-modal": "^3.16.1"
+  }
 }

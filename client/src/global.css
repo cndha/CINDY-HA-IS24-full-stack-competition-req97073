@@ -16,3 +16,25 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.ReactModal__Content{
+  z-index: 9999 !important;
+  border: none !important;
+  border-radius: 20px !important;
+  padding: 24px !important;
+  inset: 0 !important;
+  position: absolute !important;
+  margin: auto !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  border-radius: 20px !important;
+  background-color: #EFEFEF;
+  overflow-y: scroll;
+}
+
+.ReactModal__Overlay{
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  width: 100%;
+  height: 100%;
+}
