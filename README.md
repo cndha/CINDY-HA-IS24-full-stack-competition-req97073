@@ -7,14 +7,15 @@ The application uses ExpressJS and ReactJS frameworks and local JSON file for da
 
 ## Set Up
 
+Express back-end:
+* Install dependecies in "server" folder with ```npm install```
+* Run ```npm start``` to render health status on http://localhost:3000 and JSON:API on http://localhost:3000/api
+
+
 React front-end:
 * Install dependencies in "client" folder with ```npm install```
 * Run ```npm start``` to render on http://localhost:3001
 * Components are tailored to a typical desktop screen size.
-
-Express back-end:
-* Install dependecies in "server" folder with ```npm install```
-* Run ```npm start``` to render health status on http://localhost:3000 and JSON:API on http://localhost:3000/api
 
 
 ## Dependencies
